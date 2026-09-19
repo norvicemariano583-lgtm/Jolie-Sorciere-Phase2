@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>La magie continue… 🌙</title>
+
+    <link rel="stylesheet" href="page2.css">
+
+
+</head>
+
+<body>
+
+    <main class="magic-page">
+
+        <!-- ÉTOILES -->
+
+        <div class="stars-page2">
+
+            <span
+                class="star-p2"
+                style="top:10%; left:15%;">
+            </span>
+
+            <span
+                class="star-p2"
+                style="top:18%; left:75%; animation-delay:.5s;">
+            </span>
+
+            <span
+                class="star-p2"
+                style="top:30%; left:88%; animation-delay:1s;">
+            </span>
+
+            <span
+                class="star-p2"
+                style="top:55%; left:8%; animation-delay:1.5s;">
+            </span>
+
+            <span
+                class="star-p2"
+                style="top:70%; left:90%; animation-delay:.8s;">
+            </span>
+
+            <span
+                class="star-p2"
+                style="top:82%; left:20%; animation-delay:1.2s;">
+            </span>
+
+            <span
+                class="star-p2"
+                style="top:90%; left:70%; animation-delay:2s;">
+            </span>
+
+        </div>
+
+
+        <!-- CONTENU -->
+
+        <div class="magic-container">
+
+            <div class="magic-symbol">
+                🌙
+            </div>
+
+
+            <h1 class="magic-title">
+
+                La magie<br>
+
+                <span>continue…</span>
+
+            </h1>
+
+
+            <p class="magic-subtitle">
+
+                Bon… puisque tu es arrivée jusqu'ici,
+                je suppose que la curiosité a gagné. 😏
+
+                <br>
+
+                Alors laisse-moi ajouter
+                un petit peu de magie à cette soirée.
+
+            </p>
+
+
+            <!-- MUSIQUE -->
+
+            <div class="music-card">
+
+                <div class="music-note">
+                    🎵
+                </div>
+
+
+                <h2 class="music-title">
+
+                    Une petite musique
+                    pour accompagner la magie
+
+                </h2>
+
+
+                <p class="music-description">
+
+                    Mets-toi confortablement…
+                    et laisse la musique faire le reste.
+
+                </p>
+
+
+                <button
+                    class="magic-button"
+                    id="playMagic">
+
+                    🎵 JOUER LA MAGIE
+
+                </button>
+
+
+                <audio id="magicMusic" loop>
+
+                    <source
+                        src="asset/dame-soir.mp3"
+                        type="audio/mpeg">
+
+                    Ton navigateur ne supporte pas
+                    la lecture audio.
+
+                </audio>
+
+            </div>
+
+
+            <!-- MESSAGE -->
+
+            <div
+                class="reveal"
+                id="revealMagic">
+
+
+                <p class="reveal-line">
+
+                    Bon… maintenant que la musique est là… 🌙
+
+                </p>
+
+
+                <p class="reveal-line">
+
+                    je peux enfin te dire quelque chose.
+
+                </p>
+
+
+                <p class="reveal-main">
+
+                    Je ne vais pas prétendre avoir trouvé
+                    la formule magique pour te faire sourire. 😏
+
+                </p>
+
+
+                <p class="reveal-line">
+
+                    Mais j'avais simplement envie de créer
+                    quelque chose qui te ressemble un peu :
+
+                </p>
+
+
+                <p class="reveal-main">
+
+                    <span>
+
+                        un peu mystérieuse,
+                        un peu douce,
+                        <br>
+                        et légèrement imprévisible.
+
+                    </span>
+
+                    🪄
+
+                </p>
+
+
+                <!-- CONCLUSION -->
+
+                <div class="final-message">
+
+                    <p>
+
+                        <strong>
+                            À bientôt, jolie sorcière
+                            aux yeux qui ne passent
+                            pas vraiment inaperçus… 🌙🪄
+                        </strong>
+
+                    </p>
+
+
+                    <p>
+
+                        Prends soin de toi. ♡
+
+                    </p>
+
+
+                    <div class="tiny-heart">
+
+                        ♡
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </main>
+
+
+    <!-- JAVASCRIPT -->
+
+    <script>
+
+        const music =
+            document.getElementById("magicMusic");
+
+        const playButton =
+            document.getElementById("playMagic");
+
+        const reveal =
+            document.getElementById("revealMagic");
+
+
+        playButton.addEventListener(
+            "click",
+            async () => {
+
+                try {
+
+                    await music.play();
+
+
+                    playButton.innerHTML =
+                        "🎵 LA MAGIE EST EN ROUTE…";
+
+
+                    playButton.disabled = true;
+
+
+                    reveal.classList.add("active");
+
+
+                } catch (error) {
+
+                    console.log(
+                        "Lecture audio impossible :",
+                        error
+                    );
+
+
+                    playButton.innerHTML =
+                        "🎵 RÉESSAYER";
+
+                }
+
+            }
+        );
+
+    </script>
+
+</body>
+</html>
