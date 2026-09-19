@@ -1,770 +1,338 @@
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap');
 
-
-/* =========================================
-   VARIABLES
-========================================= */
-
-:root {
-
-    --black: #070306;
-
-    --pink: #f28ab2;
-
-    --pink-light: #ffb2cf;
-
-    --white: #fff8fb;
-
+:root{
+  --black:#070306;
+  --pink:#f28ab2;
+  --pink-light:#ffb2cf;
+  --white:#fff8fb;
 }
 
+*{box-sizing:border-box;margin:0;padding:0}
 
-/* =========================================
-   RESET
-========================================= */
-
-* {
-    box-sizing: border-box;
+html,body{
+  width:100%;
+  min-height:100%;
+  background:var(--black);
 }
 
-
-html,
-body {
-
-    margin: 0;
-
-    min-height: 100%;
-
+body{
+  color:var(--white);
+  font-family:'Montserrat',sans-serif;
+  overflow-x:hidden;
+  overflow-y:auto;
 }
 
-
-body {
-
-    background: var(--black);
-
-    color: var(--white);
-
-    font-family: 'Montserrat', sans-serif;
-
-    overflow: hidden;
-
+.hero{
+  position:relative;
+  width:100%;
+  min-height:100svh;
+  height:auto;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+  isolation:isolate;
 }
 
-
-/* =========================================
-   HERO
-========================================= */
-
-.hero {
-
-    position: relative;
-
-    height: 100vh;
-
-    width: 100%;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    overflow: hidden;
-
+.background-image{
+  position:absolute;
+  inset:0;
+  z-index:0;
+  background-image:url("asset/hero-magique.png");
+  background-size:cover;
+  background-position:center center;
+  background-repeat:no-repeat;
+  transform:scale(1.02);
 }
 
-
-/* =========================================
-   IMAGE DE FOND
-========================================= */
-
-.background-image {
-
-    position: absolute;
-
-    inset: 0;
-
-    background-image:
-        url("asset/hero-magique.png");
-
-    background-size: cover;
-
-    background-position: center;
-
-    transform: scale(1.02);
-
+.overlay{
+  position:absolute;
+  inset:0;
+  z-index:1;
+  background:
+    radial-gradient(circle at 50% 48%,rgba(255,110,170,.10),transparent 38%),
+    linear-gradient(90deg,rgba(0,0,0,.30),rgba(0,0,0,.05),rgba(0,0,0,.30)),
+    linear-gradient(0deg,rgba(3,1,3,.62),transparent 38%,rgba(3,1,3,.20));
 }
 
-
-/* =========================================
-   OVERLAY
-========================================= */
-
-.overlay {
-
-    position: absolute;
-
-    inset: 0;
-
-    background:
-
-        radial-gradient(
-            circle at 50% 48%,
-            rgba(255, 110, 170, 0.10),
-            transparent 38%
-        ),
-
-        linear-gradient(
-            90deg,
-            rgba(0, 0, 0, 0.30),
-            rgba(0, 0, 0, 0.05),
-            rgba(0, 0, 0, 0.30)
-        ),
-
-        linear-gradient(
-            0deg,
-            rgba(3, 1, 3, 0.60),
-            transparent 35%,
-            rgba(3, 1, 3, 0.20)
-        );
-
+.stars{
+  position:fixed;
+  inset:0;
+  z-index:3;
+  pointer-events:none;
+  opacity:.75;
+  background-image:
+    radial-gradient(circle,#fff 0 1px,transparent 1.5px),
+    radial-gradient(circle,#ff9ac0 0 1px,transparent 1.5px);
+  background-size:137px 151px,211px 193px;
+  animation:starsMove 18s linear infinite;
 }
 
-
-/* =========================================
-   ÉTOILES
-========================================= */
-
-.stars {
-
-    position: fixed;
-
-    inset: 0;
-
-    z-index: 3;
-
-    pointer-events: none;
-
-    opacity: 0.75;
-
-    background-image:
-
-        radial-gradient(
-            circle,
-            #ffffff 0 1px,
-            transparent 1.5px
-        ),
-
-        radial-gradient(
-            circle,
-            #ff9ac0 0 1px,
-            transparent 1.5px
-        );
-
-    background-size:
-
-        137px 151px,
-
-        211px 193px;
-
-    animation: starsMove 18s linear infinite;
-
+@keyframes starsMove{
+  from{background-position:0 0,0 0}
+  to{background-position:137px 151px,211px 193px}
 }
 
-
-@keyframes starsMove {
-
-    from {
-
-        background-position:
-            0 0,
-            0 0;
-
-    }
-
-    to {
-
-        background-position:
-            137px 151px,
-            211px 193px;
-
-    }
-
+.topbar{
+  position:absolute;
+  z-index:5;
+  top:0;
+  left:0;
+  right:0;
+  padding:22px 4vw;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  background:linear-gradient(rgba(0,0,0,.45),transparent);
 }
 
+.brand{display:flex;align-items:center;gap:12px}
+.brand-icon{display:none}
 
-/* =========================================
-   NAVIGATION
-========================================= */
-
-.topbar {
-
-    position: absolute;
-
-    z-index: 5;
-
-    top: 0;
-
-    left: 0;
-
-    right: 0;
-
-    padding: 22px 4vw;
-
-    display: flex;
-
-    justify-content: space-between;
-
-    align-items: center;
-
-    background:
-        linear-gradient(
-            rgba(0, 0, 0, 0.45),
-            transparent
-        );
-
+.brand-text strong{
+  display:block;
+  font-family:'Cormorant Garamond',serif;
+  font-size:15px;
+  letter-spacing:.18em;
 }
 
-
-/* Logo */
-
-.brand {
-
-    display: flex;
-
-    align-items: center;
-
-    gap: 12px;
-
+.brand-text small{
+  display:block;
+  margin-top:1px;
+  color:#d9a5b9;
+  font-family:'Cormorant Garamond',serif;
+  font-size:15px;
+  font-style:italic;
 }
 
+nav{display:none}
 
-.brand-icon {
-
-    font-size: 25px;
-
-    color: var(--pink);
-
+.top-heart{
+  color:var(--pink);
+  font-size:30px;
+  line-height:1;
+  text-shadow:0 0 18px rgba(242,138,178,.55);
 }
 
-
-.brand-text strong {
-
-    display: block;
-
-    font-family: 'Cormorant Garamond', serif;
-
-    font-size: 15px;
-
-    letter-spacing: 0.22em;
-
+.hero-content{
+  position:relative;
+  z-index:4;
+  width:min(850px,92vw);
+  padding:100px 20px 90px;
+  text-align:center;
+  animation:appear 1.2s ease both;
 }
 
-
-.brand-text small {
-
-    display: block;
-
-    margin-top: 1px;
-
-    color: #d9a5b9;
-
-    font-family: 'Cormorant Garamond', serif;
-
-    font-size: 15px;
-
-    font-style: italic;
-
+@keyframes appear{
+  from{opacity:0;transform:translateY(20px)}
+  to{opacity:1;transform:translateY(0)}
 }
 
-
-/* Navigation */
-
-nav {
-
-    display: flex;
-
-    align-items: center;
-
-    gap: 27px;
-
-    font-size: 10px;
-
-    letter-spacing: 0.25em;
-
+.attention{
+  margin:0;
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(32px,6vw,58px);
+  line-height:1;
+  font-weight:500;
 }
 
-
-nav span {
-
-    color: #f7dce7;
-
+h1{
+  margin:0;
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(52px,10vw,105px);
+  line-height:.95;
+  font-weight:500;
+  font-style:italic;
+  color:var(--pink-light);
+  text-shadow:0 0 30px rgba(255,102,165,.25);
 }
 
-
-nav .heart {
-
-    color: var(--pink);
-
-    font-size: 27px;
-
-    letter-spacing: 0;
-
+h1 span{
+  font-family:'Montserrat',sans-serif;
+  font-size:.45em;
+  font-style:normal;
 }
 
-
-/* =========================================
-   CONTENU
-========================================= */
-
-.hero-content {
-
-    position: relative;
-
-    z-index: 4;
-
-    width: min(850px, 92vw);
-
-    padding: 80px 20px;
-
-    text-align: center;
-
-    animation: appear 1.2s ease both;
-
+.divider{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:14px;
+  margin:22px 0 28px;
+  color:var(--pink);
 }
 
-
-@keyframes appear {
-
-    from {
-
-        opacity: 0;
-
-        transform: translateY(20px);
-
-    }
-
-    to {
-
-        opacity: 1;
-
-        transform: translateY(0);
-
-    }
-
+.divider i{
+  width:65px;
+  height:1px;
+  display:block;
+  background:linear-gradient(90deg,transparent,var(--pink));
 }
 
+.divider i:last-child{transform:rotate(180deg)}
+.divider span{font-size:18px}
 
-/* =========================================
-   TITRE
-========================================= */
-
-.attention {
-
-    margin: 0;
-
-    font-family: 'Cormorant Garamond', serif;
-
-    font-size: clamp(
-        42px,
-        6vw,
-        74px
-    );
-
-    line-height: 0.9;
-
-    font-weight: 500;
-
+.message{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(19px,2.5vw,28px);
+  line-height:1.35;
 }
 
+.message p{margin:0 0 10px}
+.funny-message{color:#f0d8e2;font-style:italic}
+.romantic-message{font-weight:600}
 
-h1 {
-
-    margin: 0;
-
-    font-family: 'Cormorant Garamond', serif;
-
-    font-size: clamp(
-        64px,
-        10vw,
-        124px
-    );
-
-    line-height: 0.9;
-
-    font-weight: 500;
-
-    font-style: italic;
-
-    color: var(--pink-light);
-
-    text-shadow:
-        0 0 30px rgba(
-            255,
-            102,
-            165,
-            0.25
-        );
-
+.magic-button{
+  margin-top:22px;
+  padding:16px 28px;
+  border:1px solid rgba(255,169,205,.8);
+  border-radius:999px;
+  color:white;
+  background:rgba(40,4,24,.42);
+  box-shadow:0 0 25px rgba(245,102,161,.18),inset 0 0 20px rgba(245,102,161,.07);
+  font-family:'Montserrat',sans-serif;
+  font-size:11px;
+  font-weight:600;
+  letter-spacing:.12em;
+  cursor:pointer;
+  transition:.3s ease;
 }
 
-
-h1 span {
-
-    font-family: 'Montserrat', sans-serif;
-
-    font-size: 0.45em;
-
-    font-style: normal;
-
+.magic-button:hover{
+  transform:translateY(-3px);
+  background:rgba(92,11,52,.55);
+  box-shadow:0 0 35px rgba(245,102,161,.34);
 }
 
+.magic-button span{margin-right:8px}
+.magic-button b{margin-left:10px;color:var(--pink-light);font-size:17px}
 
-/* =========================================
-   SÉPARATEUR
-========================================= */
-
-.divider {
-
-    display: flex;
-
-    justify-content: center;
-
-    align-items: center;
-
-    gap: 14px;
-
-    margin: 25px 0 30px;
-
-    color: var(--pink);
-
+.hint{
+  margin-top:12px;
+  color:#d8b1c1;
+  font-family:'Cormorant Garamond',serif;
+  font-size:16px;
+  font-style:italic;
 }
 
-
-.divider i {
-
-    width: 75px;
-
-    height: 1px;
-
-    display: block;
-
-    background:
-
-        linear-gradient(
-            90deg,
-            transparent,
-            var(--pink)
-        );
-
+.signature{
+  position:absolute;
+  z-index:4;
+  right:4vw;
+  bottom:8vh;
+  color:#f0a6c4;
+  font-family:'Cormorant Garamond',serif;
+  font-size:19px;
+  font-style:italic;
+  line-height:1.05;
+  transform:rotate(-4deg);
 }
 
-
-.divider i:last-child {
-
-    transform: rotate(180deg);
-
+footer{
+  position:absolute;
+  z-index:4;
+  left:4vw;
+  bottom:18px;
+  color:rgba(255,255,255,.45);
+  font-size:9px;
+  letter-spacing:.08em;
 }
 
+@media(max-width:800px){
+  .hero{
+    min-height:100svh;
+    align-items:flex-start;
+    overflow:visible;
+  }
 
-.divider span {
+  .background-image{
+    background-position:58% center;
+  }
 
-    font-size: 20px;
+  .topbar{
+    padding:18px 18px;
+  }
 
+  .brand-text strong{
+    font-size:13px;
+    letter-spacing:.12em;
+  }
+
+  .brand-text small{
+    font-size:13px;
+  }
+
+  .top-heart{
+    font-size:27px;
+  }
+
+  .hero-content{
+    width:100%;
+    max-width:560px;
+    padding:125px 18px 115px;
+  }
+
+  .attention{
+    font-size:clamp(30px,10vw,44px);
+  }
+
+  h1{
+    font-size:clamp(48px,15vw,68px);
+  }
+
+  .divider{
+    margin:18px 0 24px;
+  }
+
+  .divider i{
+    width:42px;
+  }
+
+  .message{
+    font-size:clamp(18px,5.2vw,23px);
+  }
+
+  .message br{
+    display:none;
+  }
+
+  .magic-button{
+    max-width:100%;
+    padding:15px 20px;
+    font-size:10px;
+    letter-spacing:.08em;
+  }
+
+  .hint{
+    font-size:15px;
+    padding:0 10px;
+  }
+
+  .signature{
+    display:none;
+  }
+
+  footer{
+    left:0;
+    right:0;
+    bottom:12px;
+    text-align:center;
+    font-size:8px;
+  }
 }
 
-
-/* =========================================
-   MESSAGE
-========================================= */
-
-.message {
-
-    font-family: 'Cormorant Garamond', serif;
-
-    font-size: clamp(
-        22px,
-        2.5vw,
-        31px
-    );
-
-    line-height: 1.35;
-
+@media(max-width:380px){
+  .hero-content{padding-top:112px;padding-left:14px;padding-right:14px}
+  .brand-text small{font-size:12px}
+  .top-heart{font-size:24px}
+  h1{font-size:46px}
+  .message{font-size:17px}
+  .magic-button{font-size:9px;padding:14px 16px}
 }
 
-
-.message p {
-
-    margin: 0 0 12px;
-
-}
-
-
-.funny-message {
-
-    color: #f0d8e2;
-
-    font-style: italic;
-
-}
-
-
-.romantic-message {
-
-    font-weight: 600;
-
-}
-
-
-/* =========================================
-   BOUTON
-========================================= */
-
-.magic-button {
-
-    margin-top: 24px;
-
-    padding: 18px 34px;
-
-    border:
-
-        1px solid
-        rgba(
-            255,
-            169,
-            205,
-            0.8
-        );
-
-    border-radius: 999px;
-
-    color: white;
-
-    background:
-
-        rgba(
-            40,
-            4,
-            24,
-            0.38
-        );
-
-    box-shadow:
-
-        0 0 25px
-        rgba(
-            245,
-            102,
-            161,
-            0.18
-        ),
-
-        inset 0 0 20px
-        rgba(
-            245,
-            102,
-            161,
-            0.07
-        );
-
-    font-family: 'Montserrat', sans-serif;
-
-    font-size: 12px;
-
-    font-weight: 600;
-
-    letter-spacing: 0.20em;
-
-    cursor: pointer;
-
-    transition: 0.3s ease;
-
-}
-
-
-.magic-button:hover {
-
-    transform: translateY(-3px);
-
-    background:
-
-        rgba(
-            92,
-            11,
-            52,
-            0.55
-        );
-
-    box-shadow:
-
-        0 0 35px
-        rgba(
-            245,
-            102,
-            161,
-            0.34
-        );
-
-}
-
-
-.magic-button span {
-
-    margin-right: 8px;
-
-}
-
-
-.magic-button b {
-
-    margin-left: 12px;
-
-    color: var(--pink-light);
-
-    font-size: 18px;
-
-}
-
-
-/* =========================================
-   TEXTE SOUS BOUTON
-========================================= */
-
-.hint {
-
-    margin-top: 14px;
-
-    color: #d8b1c1;
-
-    font-family: 'Cormorant Garamond', serif;
-
-    font-size: 17px;
-
-    font-style: italic;
-
-}
-
-
-/* =========================================
-   SIGNATURE
-========================================= */
-
-.signature {
-
-    position: absolute;
-
-    z-index: 4;
-
-    right: 4vw;
-
-    bottom: 8vh;
-
-    color: #f0a6c4;
-
-    font-family: 'Cormorant Garamond', serif;
-
-    font-size: 19px;
-
-    font-style: italic;
-
-    line-height: 1.05;
-
-    transform: rotate(-4deg);
-
-}
-
-
-/* =========================================
-   FOOTER
-========================================= */
-
-footer {
-
-    position: absolute;
-
-    z-index: 4;
-
-    left: 4vw;
-
-    bottom: 18px;
-
-    color: rgba(
-        255,
-        255,
-        255,
-        0.45
-    );
-
-    font-size: 9px;
-
-    letter-spacing: 0.08em;
-
-}
-
-
-/* =========================================
-   MOBILE
-========================================= */
-
-@media (max-width: 800px) {
-
-    nav {
-
-        display: none;
-
-    }
-
-
-    .topbar {
-
-        padding: 18px 20px;
-
-    }
-
-
-    .hero-content {
-
-        padding-top: 100px;
-
-    }
-
-
-    .signature {
-
-        display: none;
-
-    }
-
-
-    .message {
-
-        font-size: 22px;
-
-    }
-
-
-    .magic-button {
-
-        padding: 16px 22px;
-
-        font-size: 10px;
-
-    }
-
-}
-
-
-/* =========================================
-   ACCESSIBILITÉ
-========================================= */
-
-@media (prefers-reduced-motion: reduce) {
-
-    * {
-
-        animation: none !important;
-
-        transition: none !important;
-
-    }
-
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{
+    animation:none!important;
+    transition:none!important;
+  }
 }
